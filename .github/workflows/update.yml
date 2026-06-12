@@ -1,32 +1,33 @@
-name: Update Messe ICS
+name: Générer messe.ics
 
 on:
   schedule:
-    - cron: '*/1 * * * *'
-  workflow_dispatch:
+    - cron: '0 0 * * 0'   # Chaque dimanche à 00h00 UTC
+  workflow_dispatch:        # Déclenchement manuel possible
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - run: pip install requests beautifulsoup4 icalendar
+      - name: Installer les dépendances
+        run: pip install requests beautifulsoup4
 
-      - run: python generate.py
+      - name: Générer le fichier ICS
+        run: python generate.py
 
-      - name: Commit ICS
+      - name: Committer messe.ics si modifié
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add messe.ics
-          git commit -m "Update ICS" || exit 0
+          git diff --cached --quiet || git commit -m "chore: mise à jour messe.ics [$(date -u '+%Y-%m-%d')]"
           git push
