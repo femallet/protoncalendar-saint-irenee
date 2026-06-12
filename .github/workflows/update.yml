@@ -1,8 +1,8 @@
-name: Update ICS
+name: Update Messe ICS
 
 on:
   schedule:
-    - cron: '0 4 * * 0'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -19,13 +19,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - run: pip install -r requirements.txt
+      - run: pip install requests beautifulsoup4 icalendar
+
       - run: python generate.py
 
       - name: Commit ICS
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add docs/messe.ics
+          git add messe.ics
           git commit -m "Update ICS" || exit 0
           git push
