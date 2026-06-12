@@ -101,36 +101,33 @@ for jour, heures in messes_chantees.items():
         print(f"  {jour.capitalize()} à {h:02d}h{m:02d}")
 
 # ---------------------------------------------------------------------------
-# 3. Calcul des prochaines occurrences (4 semaines)
+# 3. Calcul des occurrences de la semaine courante (lun–dim)
 # ---------------------------------------------------------------------------
-def next_weekday_from(base_date, weekday):
-    """Prochaine date à partir de base_date (inclus) pour le weekday (0=lun, 6=dim)."""
-    days_ahead = (weekday - base_date.weekday()) % 7
-    return base_date + timedelta(days=days_ahead)
-
 def is_first_friday(dt):
     return dt.weekday() == 4 and dt.day <= 7
 
-today  = datetime.now().date()
-events = []
+today      = datetime.now().date()
+week_start = today - timedelta(days=today.weekday())   # lundi
+week_end   = week_start + timedelta(days=6)             # dimanche
+events     = []
 
 for jour, heures in messes_chantees.items():
     weekday_num = JOURS[jour]
-    first_date  = next_weekday_from(today, weekday_num)
-    for week in range(4):
-        date = first_date + timedelta(weeks=week)
-        for h, m in heures:
-            start = datetime(date.year, date.month, date.day, h, m, 0)
-            end   = start + timedelta(minutes=90)
-            if is_first_friday(start):
-                summary = "Messe solennelle chantée - Saint-Irénée"
-            elif jour == "dimanche":
-                summary = "Messe chantée (dimanche) - Saint-Irénée"
-            elif jour == "vendredi":
-                summary = "Messe chantée (vendredi) - Saint-Irénée"
-            else:
-                summary = f"Messe chantée ({jour}) - Saint-Irénée"
-            events.append((start, end, summary))
+    date = week_start + timedelta(days=weekday_num)
+    if not (week_start <= date <= week_end):
+        continue
+    for h, m in heures:
+        start = datetime(date.year, date.month, date.day, h, m, 0)
+        end   = start + timedelta(minutes=90)
+        if is_first_friday(start):
+            summary = "Messe solennelle chantée - Saint-Irénée"
+        elif jour == "dimanche":
+            summary = "Messe chantée (dimanche) - Saint-Irénée"
+        elif jour == "vendredi":
+            summary = "Messe chantée (vendredi) - Saint-Irénée"
+        else:
+            summary = f"Messe chantée ({jour}) - Saint-Irénée"
+        events.append((start, end, summary))
 
 events.sort(key=lambda x: x[0])
 
