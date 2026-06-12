@@ -135,7 +135,7 @@ events.sort(key=lambda x: x[0])
 # 4. Génération du fichier ICS (RFC 5545)
 # ---------------------------------------------------------------------------
 def ics_dt(dt):
-    return dt.strftime("%Y%m%dT%H%M%S") + "+0400" 
+    return dt.strftime("%Y%m%dT%H%M%S") + "-0400" 
 
 def ics_now():
     return datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
