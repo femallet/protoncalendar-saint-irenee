@@ -4,11 +4,20 @@ PRODID:-//Saint-Irénée//Messe Chantée//FR
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
+SUMMARY:Messe chantée (vendredi) - Saint-Irénée
+DTSTART:20260612T190000-0400
+DTEND:20260612T203000-0400
+DTSTAMP:20260612T202210Z
+UID:1781290800-0@st-irenee
+LOCATION:560 Atwater Ave\, Montréal\, QC H4C 1M9
+DESCRIPTION:Messe en forme extraordinaire du rite romain (messe chantée).
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Messe chantée (dimanche) - Saint-Irénée
 DTSTART:20260614T100000-0400
 DTEND:20260614T113000-0400
-DTSTAMP:20260614T025906Z
-UID:1781431200-0@st-irenee
+DTSTAMP:20260612T202210Z
+UID:1781431200-1@st-irenee
 LOCATION:560 Atwater Ave\, Montréal\, QC H4C 1M9
 DESCRIPTION:Messe en forme extraordinaire du rite romain (messe chantée).
 END:VEVENT
