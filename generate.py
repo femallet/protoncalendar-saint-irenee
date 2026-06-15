@@ -1,3 +1,9 @@
+from datetime import datetime, timedelta
+from bs4 import BeautifulSoup
+import requests
+import re
+import sys
+import os  # ← ajouter cette ligne
 # ---------------------------------------------------------------------------
 # 4. Fusion avec le fichier ICS existant + génération (RFC 5545)
 # ---------------------------------------------------------------------------
