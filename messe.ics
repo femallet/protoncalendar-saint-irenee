@@ -120,4 +120,22 @@ UID:1786269600-1@st-irenee
 LOCATION:560 Atwater Ave\, Montréal\, QC H4C 1M9
 DESCRIPTION:Messe en forme extraordinaire du rite romain (messe chantée).
 END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Messe chantée (samedi) - Saint-Irénée
+DTSTART:20260815T090000-0400
+DTEND:20260815T103000-0400
+DTSTAMP:20260816T005444Z
+UID:1786784400-0@st-irenee
+LOCATION:560 Atwater Ave\, Montréal\, QC H4C 1M9
+DESCRIPTION:Messe en forme extraordinaire du rite romain (messe chantée).
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Messe chantée (dimanche) - Saint-Irénée
+DTSTART:20260816T100000-0400
+DTEND:20260816T113000-0400
+DTSTAMP:20260816T005444Z
+UID:1786874400-1@st-irenee
+LOCATION:560 Atwater Ave\, Montréal\, QC H4C 1M9
+DESCRIPTION:Messe en forme extraordinaire du rite romain (messe chantée).
+END:VEVENT
 END:VCALENDAR
